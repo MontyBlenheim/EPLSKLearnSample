@@ -1,0 +1,35 @@
+package apama.test;
+
+event HousingData {
+	float RAD; // index of accessibility to radial highways
+	float PTRATIO; // pupil-teacher ratio by town
+}
+event Graph {
+	string classifier;
+}
+
+monitor Test {
+	import "testPlugin" as plugin;
+	
+	action onload() {
+		plugin.Train();
+		on all HousingData() as hd {
+			
+			dictionary<string, boolean> results := plugin.CheckIfOutlier(hd);
+			
+			string r;
+			boolean isOutlier := false;
+			for r in results.keys() {
+				if(results[r]) {
+					log hd.toString() + " - " + r + " determined this to be an outlier!";
+					isOutlier := true;
+				}
+			}
+		}
+		
+		on all Graph() as g {
+			plugin.GraphResults(g.classifier);
+		}
+		
+	}
+}
