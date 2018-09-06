@@ -4,9 +4,6 @@ event HousingData {
 	float RAD; // index of accessibility to radial highways
 	float PTRATIO; // pupil-teacher ratio by town
 }
-event Graph {
-	string classifier;
-}
 
 monitor Test {
 	import "testPlugin" as plugin;
@@ -25,11 +22,6 @@ monitor Test {
 					isOutlier := true;
 				}
 			}
-		}
-		
-		on all Graph() as g {
-			plugin.GraphResults(g.classifier);
-		}
-		
+		}		
 	}
 }

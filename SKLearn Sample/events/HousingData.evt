@@ -34,7 +34,3 @@ apama.test.HousingData(7.,19.)
 
 apama.test.HousingData(5.,10.)
 apama.test.HousingData(1.,2.)
-
-apama.test.Graph("Empirical Covariance")
-apama.test.Graph("Robust Covariance (Minimum Covariance Determinant)")
-apama.test.Graph("OCSVM")
