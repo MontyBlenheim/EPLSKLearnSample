@@ -6,20 +6,24 @@ event HousingData {
 }
 
 monitor Test {
-	import "testPlugin" as plugin;
+	import "testPlugin" as plugin;		// Load our Python plug-in
 	
 	action onload() {
-		plugin.Train();
+		plugin.Train();		// Call the plug-in function to train our classifiers
+		
 		on all HousingData() as hd {
 			
+			// Check if this event is an outlier.
+			// Results is a dictionary of {name : result} where name is the name of
+			// the classifier and result is whether or not that classifier considers
+			// this data to be an outlier.
 			dictionary<string, boolean> results := plugin.CheckIfOutlier(hd);
 			
 			string r;
-			boolean isOutlier := false;
 			for r in results.keys() {
 				if(results[r]) {
+					// If this classifier determines this data to be an outlier, output to the log
 					log hd.toString() + " - " + r + " determined this to be an outlier!";
-					isOutlier := true;
 				}
 			}
 		}		
