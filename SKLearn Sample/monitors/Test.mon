@@ -1,4 +1,4 @@
-package apama.test;
+package apamax.ml;
 
 event HousingData {
 	float RAD; // index of accessibility to radial highways
