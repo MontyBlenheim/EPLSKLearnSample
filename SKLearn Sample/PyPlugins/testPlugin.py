@@ -30,7 +30,7 @@ class TestPlugin(EPLPluginBase):
         for clf in self.classifiers.values():
             clf.fit(self.TrainingData)
     
-    @EPLAction("action<apama.test.HousingData> returns dictionary<string, boolean>")
+    @EPLAction("action<apamax.ml.HousingData> returns dictionary<string, boolean>")
     def CheckIfOutlier(self, d):
         asData = [d.fields["RAD"], d.fields["PTRATIO"]]
         res = {}
